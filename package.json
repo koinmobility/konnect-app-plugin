@@ -1,6 +1,6 @@
 {
   "name": "xentra-plugins",
-  "version": "1.0.14",
+  "version": "1.0.18",
   "description": "test login",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/ChrisjayPedra/login-npm#readme",
   "dependencies": {
-    "@capacitor/http": "^0.0.2"
+    "@capacitor/http": "^0.0.2",
+    "axios": "^1.7.2",
+    "node-fetch": "^3.3.2"
   }
 }

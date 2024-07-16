@@ -1,11 +1,9 @@
 
 
 const { CapacitorHttp } = require('@capacitor/core'); 
+const axios = require('axios');
 
-
-
-
-function test_login_2(LoginType,Password,MobileNumber) {
+function test_login_2(mobileNumber, password, loginType) {
   const headers = {
     ProgramKey: 'ARDENTQA2023',
     ApiKey: 'ARDENTQA2023PROP',
@@ -13,38 +11,28 @@ function test_login_2(LoginType,Password,MobileNumber) {
     Authorization: 'Basic YWRtaW46QGRtMW4xMjM0',
   };
 
+  console.log('input', loginType, password, mobileNumber);
+
   const body = {
-    MobileNumber: MobileNumber,
-    Password: Password,
-    LoginType: LoginType,
+    MobileNumber: mobileNumber,
+    Password: password,
+    LoginType: loginType,
   };
 
-  const options = {
-    method: 'POST',
-    url: 'https://kmcore-dev.koinmobility.com/KOIN/Login',
-    headers: headers,
-    data: body,
-  };
+  const url = 'https://kmcore-dev.koinmobility.com/KOIN/Login';
 
   return new Promise((resolve, reject) => {
-    CapacitorHttp.post(options).then(
-      (res) => {
-        console.log('result', res);
-        resolve(res);
-      },
-      (error) => {
+    axios.post(url, body, { headers })
+      .then((res) => {
+        console.log('result', res.data); // Access the response data
+        resolve(res.data); // Resolve with the response data
+      })
+      .catch((error) => {
         console.error('HTTP Error:', error);
         reject(error);
-      }
-    );
+      });
   });
- 
 }
-
-
-
-
-
 
 function test_login(username, password) {
   const options = {
