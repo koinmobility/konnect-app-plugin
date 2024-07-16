@@ -1,0 +1,23 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "test login",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisjayPedra/login-npm.git"
+  },
+  "keywords": [
+    "cjp",
+    "login"
+  ],
+  "author": "chris jay pedra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisjayPedra/login-npm/issues"
+  },
+  "homepage": "https://github.com/ChrisjayPedra/login-npm#readme"
+}
