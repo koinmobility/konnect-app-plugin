@@ -1,7 +1,7 @@
 {
-  "name": "xentra-plugins",
+  "name": "konnect-app-plugin",
   "version": "1.0.35",
-  "description": "test login",
+  "description": "konnect-app-plugin",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
