@@ -1,6 +1,6 @@
 {
   "name": "konnect-app-plugin",
-  "version": "1.0.35",
+  "version": "1.0.45",
   "description": "konnect-app-plugin",
   "main": "index.js",
   "scripts": {
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChrisjayPedra/login-npm.git"
+    "url": "https://github.com/koinmobility/konnect-app-plugin"
   },
   "keywords": [
-    "cjp",
-    "login"
+    "Koin",
+    "Payments"
   ],
-  "author": "chris jay pedra",
+  "author": "Koin Payments",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ChrisjayPedra/login-npm/issues"
+    "url": "https://github.com/koinmobility/konnect-app-plugin"
   },
-  "homepage": "https://github.com/ChrisjayPedra/login-npm#readme",
+  "homepage": "https://github.com/koinmobility/konnect-app-plugin",
   "dependencies": {
     "@capacitor/http": "^0.0.2",
     "axios": "^1.7.2",

@@ -1,27 +1,34 @@
 const axios = require('axios');
 
+let apiConfig = {
+  baseURL: '',
+  defaultHeaders: {}
+};
 
-function test_login(headers,body) {
-  const url = 'https://kmcore-dev.koinmobility.com/KOIN/Login'
-  return new Promise((resolve, reject) => {
-    axios.post(url, body, { headers })
-      .then((res) => {
-        console.log('result', res.data); 
-        resolve(res.data);
-      })
-      .catch((error) => {
-        console.error('HTTP Error:', error);
-        reject(error);
-      });
-  });
+// Initialize the API configuration
+function init(baseURL, headers) {
+  apiConfig.baseURL = baseURL;
+  apiConfig.defaultHeaders = headers;
+  // console.log('apiConfig',apiConfig)
 }
 
-function getToken(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/token'
+function testLogin(endpoint, body) {
+  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
+    .then((res) => {
+      // console.log('result', res.data);
+      return res.data;
+    })
+    .catch((error) => {
+      console.error('HTTP Error:', error);
+      throw error;
+    });
+}
+
+function getToken(url,body){
   return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
+    axios.post(url, body)
     .then((res)=>{
-       console.log('result',res) 
+      //  console.log('result',res) 
        resolve(res);
     })
     .catch((error)=>{
@@ -31,42 +38,35 @@ function getToken(headers,body){
   })
 }
 
-function startSession(headers,body){
-  const url = ''
-  return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
-    .then((res)=>{
-       console.log('result',res) 
-       resolve(res);
+function startSession(endpoint, body) {
+  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
+    .then((res) => {
+      // console.log('result', res.data);
+      return res.data;
     })
-    .catch((error)=>{
-      console.log('Token error',error)
-      reject('startSession',error);
-    })
-  })
+    .catch((error) => {
+      console.error('Start Session Error:', error);
+      throw error;
+    });
 }
 
-function transfer(headers,body){
-  const url = ''
-  return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
-    .then((res)=>{
-       console.log('result',res.data) 
-       resolve(res.data);
+function transfer(endpoint, body) {
+  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
+    .then((res) => {
+      // console.log('result', res.data);
+      return res.data;
     })
-    .catch((error)=>{
-      console.log('Token error',error)
-      reject('transfer',error);
-    })
-  })
+    .catch((error) => {
+      console.error('Transfer Error:', error);
+      throw error;
+    });
 }
 
-function updateCallBack(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/callback'
-  return new Promise((resolve,reject)=>{
-    axios.put(url,body,{headers})
+function updateCallBack(endpoint,body){
+   return new Promise((resolve,reject)=>{
+    axios.put(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -76,12 +76,11 @@ function updateCallBack(headers,body){
   })
 }
 
-function getCallback(headers) {
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/callback';
+function getCallback(endpoint) {
   return new Promise((resolve, reject) => {
-    axios.get(url, { headers })
+    axios.get(apiConfig.baseURL + endpoint, { headers: apiConfig.defaultHeaders })
       .then((res) => {
-        console.log('result', res.data);
+        // console.log('result', res.data);
         resolve(res.data);
       })
       .catch((error) => {
@@ -91,12 +90,11 @@ function getCallback(headers) {
   });
 }
 
-function sampleCallback(headers,body){
-  const url = ''
+function sampleCallback(endpoint, body) {
   return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
+    axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -106,12 +104,11 @@ function sampleCallback(headers,body){
   })
 }
 
-function registerCallback(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/callback'
+function registerCallback(endpoint, body) {
   return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
+    axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -121,59 +118,49 @@ function registerCallback(headers,body){
   })
 }
 
-function jweEncrypt(headers,body){
-  const url = ''
-  return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
-    .then((res)=>{
-       console.log('result',res.data) 
-       resolve(res.data);
+function jweEncrypt(endpoint, body) {
+  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
+    .then((res) => {
+      // console.log('result', res.data);
+      return res.data;
     })
-    .catch((error)=>{
-      console.log('Token error',error)
-      reject('jweEncrypt',error);
-    })
-  })
+    .catch((error) => {
+      console.error('JWE Encrypt Error:', error);
+      throw error;
+    });
 }
 
-function jweDecrypt(headers,body){
-  const url = ''
-  return new Promise((resolve,reject)=>{
-    axios.get(url,body,{headers})
-    .then((res)=>{
-       console.log('result',res.data) 
-       resolve(res.data);
+function jweDecrypt(endpoint) {
+  return axios.get(apiConfig.baseURL + endpoint, { headers: apiConfig.defaultHeaders })
+    .then((res) => {
+      // console.log('result', res.data);
+      return res.data;
     })
-    .catch((error)=>{
-      console.log('Token error',error)
-      reject('jweDecrypt',error);
-    })
-  })
+    .catch((error) => {
+      console.error('JWE Decrypt Error:', error);
+      throw error;
+    });
 }
 
-function getBalance(playerId, providerCode, headers) {
-  const url = `https://appkonnect-ardent-dev.koinpayments.com/app/v1/balance/${playerId}/${providerCode}`;  // Constructing the URL
-  
+function getBalance(endpoint) {
   return new Promise((resolve, reject) => {
-    axios.get(url, { headers })
+    axios.get(apiConfig.baseURL + endpoint, { headers: apiConfig.defaultHeaders })
       .then((res) => {
-        console.log('Balance result', res.data);
-        resolve(res.data);  // Resolve the promise with the result data
+        // console.log('Balance result', res.data);
+        resolve(res.data);  
       })
       .catch((error) => {
         console.log('getBalance error', error.response ? error.response.data : error.message);
-        reject(error);  // Reject the promise with the error
+        reject(error);  
       });
   });
 }
 
-function uploadDocument(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/PlayerKycDoc'
+function uploadDocument(endpoint, body) {
   return new Promise((resolve,reject)=>{
-    console.log("URL",url)
-    axios.post(url,body,{headers})
+    axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -183,12 +170,11 @@ function uploadDocument(headers,body){
   })
 }
 
-function createCWA(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/createPlayer'
+function createCWA(endpoint, body) {
   return new Promise((resolve,reject)=>{
-    axios.post(url,body,{headers})
+    axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -198,12 +184,11 @@ function createCWA(headers,body){
   })
 }
 
-function updateCWA(headers,body){
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/updatePlayer'
+function updateCWA(endpoint, body) {
   return new Promise((resolve,reject)=>{
-    axios.put(url,body,{headers})
+    axios.put(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
     .then((res)=>{
-       console.log('result',res.data) 
+      //  console.log('result',res.data) 
        resolve(res.data);
     })
     .catch((error)=>{
@@ -213,24 +198,23 @@ function updateCWA(headers,body){
   })
 }
 
-function getDocumentType(headers) {
-  const url = 'https://appkonnect-ardent-dev.koinpayments.com/app/v1/getDocumentTypes';
+function getDocumentType(endpoint) {
   return new Promise((resolve, reject) => {
-    axios.get(url, { headers })  // Only headers go here, no body in GET request
+    axios.get(apiConfig.baseURL + endpoint, { headers: apiConfig.defaultHeaders }) 
       .then((res) => {
-        console.log('result', res.data);
+        // console.log('result', res.data);
         resolve(res.data);
       })
       .catch((error) => {
         console.log('getDocumentType error', error);
-        reject(error);  // Pass just the error
+        reject(error); 
       });
   });
 }
 
-
 module.exports = {
-  test_login,
+  init,
+  testLogin,
   getToken,
   startSession,
   transfer,
@@ -245,4 +229,4 @@ module.exports = {
   createCWA,
   updateCWA,
   getDocumentType
-}; 
+};
