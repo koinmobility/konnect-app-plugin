@@ -12,18 +12,6 @@ function init(baseURL, headers) {
   // console.log('apiConfig',apiConfig)
 }
 
-function testLogin(endpoint, body) {
-  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
-    .then((res) => {
-      // console.log('result', res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error('HTTP Error:', error);
-      throw error;
-    });
-}
-
 function getToken(url,body){
   return new Promise((resolve,reject)=>{
     axios.post(url, body)
@@ -36,30 +24,6 @@ function getToken(url,body){
       reject('Get Token',error);
     })
   })
-}
-
-function startSession(endpoint, body) {
-  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
-    .then((res) => {
-      // console.log('result', res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error('Start Session Error:', error);
-      throw error;
-    });
-}
-
-function transfer(endpoint, body) {
-  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
-    .then((res) => {
-      // console.log('result', res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error('Transfer Error:', error);
-      throw error;
-    });
 }
 
 function updateCallBack(endpoint,body){
@@ -90,20 +54,6 @@ function getCallback(endpoint) {
   });
 }
 
-function sampleCallback(endpoint, body) {
-  return new Promise((resolve,reject)=>{
-    axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
-    .then((res)=>{
-      //  console.log('result',res.data) 
-       resolve(res.data);
-    })
-    .catch((error)=>{
-      console.log('Token error',error)
-      reject('sample Callback',error);
-    })
-  })
-}
-
 function registerCallback(endpoint, body) {
   return new Promise((resolve,reject)=>{
     axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
@@ -116,30 +66,6 @@ function registerCallback(endpoint, body) {
       reject('register Callback',error);
     })
   })
-}
-
-function jweEncrypt(endpoint, body) {
-  return axios.post(apiConfig.baseURL + endpoint, body, { headers: apiConfig.defaultHeaders })
-    .then((res) => {
-      // console.log('result', res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error('JWE Encrypt Error:', error);
-      throw error;
-    });
-}
-
-function jweDecrypt(endpoint) {
-  return axios.get(apiConfig.baseURL + endpoint, { headers: apiConfig.defaultHeaders })
-    .then((res) => {
-      // console.log('result', res.data);
-      return res.data;
-    })
-    .catch((error) => {
-      console.error('JWE Decrypt Error:', error);
-      throw error;
-    });
 }
 
 function getBalance(endpoint) {
@@ -214,16 +140,10 @@ function getDocumentType(endpoint) {
 
 module.exports = {
   init,
-  testLogin,
   getToken,
-  startSession,
-  transfer,
   updateCallBack,
   getCallback,
-  sampleCallback,
   registerCallback,
-  jweEncrypt,
-  jweDecrypt,
   getBalance,
   uploadDocument,
   createCWA,

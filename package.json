@@ -1,6 +1,6 @@
 {
   "name": "konnect-app-plugin",
-  "version": "1.0.45",
+  "version": "1.0.50",
   "description": "konnect-app-plugin",
   "main": "index.js",
   "scripts": {
