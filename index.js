@@ -6,17 +6,17 @@ let apiConfig = {
 };
 
 // Initialize the API configuration
-function init(baseURL, headers) {
+function init(baseURL) {
   apiConfig.baseURL = baseURL;
-  apiConfig.defaultHeaders = headers;
+  // apiConfig.defaultHeaders = headers;
   // console.log('apiConfig',apiConfig)
 }
 
-function getToken(url,body){
+function getToken(endpoint,body){
   return new Promise((resolve,reject)=>{
-    axios.post(url, body)
+    axios.post(apiConfig.baseURL + endpoint, body)
     .then((res)=>{
-      //  console.log('result',res) 
+       apiConfig.defaultHeaders['Authorization'] = `Bearer ${res.data.data.access_token}`;
        resolve(res);
     })
     .catch((error)=>{
