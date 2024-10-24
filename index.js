@@ -21,7 +21,8 @@ function getToken(endpoint,body){
     })
     .catch((error)=>{
       console.log('Token error',error)
-      reject('Get Token',error);
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -35,7 +36,8 @@ function updateCallBack(endpoint,body){
     })
     .catch((error)=>{
       console.log('update error',error)
-      reject('Update callback',error);
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -49,7 +51,8 @@ function getCallback(endpoint) {
       })
       .catch((error) => {
         console.log('getCallback error', error);
-        reject(error);
+        const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+        reject(errorMessage);
       });
   });
 }
@@ -62,8 +65,9 @@ function registerCallback(endpoint, body) {
        resolve(res.data);
     })
     .catch((error)=>{
-      console.log('Token error',error)
-      reject('register Callback',error);
+      console.log('RegisterCallback error',error)
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -76,8 +80,9 @@ function getBalance(endpoint) {
         resolve(res.data);  
       })
       .catch((error) => {
-        console.log('getBalance error', error.response ? error.response.data : error.message);
-        reject(error);  
+        console.log('getBalance error', error);
+        const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+        reject(errorMessage);
       });
   });
 }
@@ -91,7 +96,8 @@ function uploadDocument(endpoint, body) {
     })
     .catch((error)=>{
       console.log('uploadDocument error',error)
-      reject('uploadDocument',error);
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -105,7 +111,8 @@ function createCWA(endpoint, body) {
     })
     .catch((error)=>{
       console.log('createCWA error',error)
-      reject('createCWA',error);
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -119,7 +126,8 @@ function updateCWA(endpoint, body) {
     })
     .catch((error)=>{
       console.log('updateCWA error',error)
-      reject('updateCWA callback',error);
+      const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+      reject(errorMessage);
     })
   })
 }
@@ -133,7 +141,8 @@ function getDocumentType(endpoint) {
       })
       .catch((error) => {
         console.log('getDocumentType error', error);
-        reject(error); 
+        const errorMessage = error.response && error.response.data && error.response.data.data  ? error.response.data.data : error.message;
+        reject(errorMessage);
       });
   });
 }
